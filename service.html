@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Fitness Center</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: grey;
+            color: white;
+            text-align: center;
+        }
+        nav {
+            background: rgb(44, 43, 43);
+            padding: 1em 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .services-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .service {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background: rgb(44, 43, 43);
+            padding: 20px;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <h1>Our Services</h1>
+    <section class="services-container">
+        <div class="service">
+            <h2>Personal Training</h2>
+            <p>Get one-on-one training with our certified fitness experts.</p>
+        </div>
+        <div class="service">
+            <h2>Group Fitness Classes</h2>
+            <p>Join our group classes for Yoga, Zumba, HIIT, and more.</p>
+        </div>
+        <div class="service">
+            <h2>Nutrition Consultation</h2>
+            <p>Work with our dieticians to create a customized meal plan.</p>
+        </div>
+        <div class="service">
+            <h2>Physiotherapy</h2>
+            <p>Recover from injuries with professional physiotherapy sessions.</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Fitness Center - All Rights Reserved
+    </footer>
+</body>
+</html>

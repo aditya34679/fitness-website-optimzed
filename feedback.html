@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+        .feedback-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .rating span {
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .rating span:hover,
+        .rating span.active {
+            color: gold;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ff4757;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h2>Give Your Feedback</h2>
+        <div class="rating" id="rating">
+            <span onclick="setRating(1)">&#9733;</span>
+            <span onclick="setRating(2)">&#9733;</span>
+            <span onclick="setRating(3)">&#9733;</span>
+            <span onclick="setRating(4)">&#9733;</span>
+            <span onclick="setRating(5)">&#9733;</span>
+        </div>
+        <textarea id="feedback" placeholder="Write your feedback here..."></textarea>
+        <button onclick="submitFeedback()">Submit</button>
+    </div>
+
+    <script>
+        function setRating(rating) {
+            const stars = document.querySelectorAll('.rating span');
+            stars.forEach((star, index) => {
+                star.classList.toggle('active', index < rating);
+            });
+            localStorage.setItem('feedbackRating', rating);
+        }
+
+        function submitFeedback() {
+            const feedbackText = document.getElementById('feedback').value;
+            const rating = localStorage.getItem('feedbackRating') || 0;
+            if (!feedbackText.trim()) {
+                alert('Please enter your feedback.');
+                return;
+            }
+            alert(`Thank you for your feedback!\nRating: ${rating} Stars\nFeedback: ${feedbackText}`);
+            document.getElementById('feedback').value = '';
+            localStorage.removeItem('feedbackRating');
+            document.querySelectorAll('.rating span').forEach(star => star.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>

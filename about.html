@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Center - Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #007bff, #6610f2);
+            color: white;
+            text-align: center;
+            padding: 2em 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            background-color: #ffffff;
+            color: #333;
+            padding: 1em 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            background-color: #f0f0f0;
+        }
+
+        .home-content {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .home-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .home-content p {
+            line-height: 1.6;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background: linear-gradient(to right, #6610f2, #007bff);
+            color: white;
+            text-align: center;
+            padding: 2em 0;
+            margin-top: auto;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1 1 30%;
+        }
+
+        .footer-column a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-right button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-right button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #ffffff;
+                padding: 10px 0;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Fitness Center</h1>
+    </header>
+    <nav>
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">ABout Us</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="item.html">Items</a></li>
+            <li><a href="diet.html">Diet</a></li>
+            <li><a href="chat.html">Chat Me</a></li>
+            <li><a href="BMI.html">BMI</a></li>
+        </ul>
+        <div class="nav-right">
+            <button onclick="location.href='login.html';">Login</button>
+            <button onclick="location.href='signup.html';">Signup</button>
+        </div>
+    </nav>
+    <main>
+        <div class="home-content">
+            <h2>About Fitness Center</h2>
+            <p>Welcome to Fitness Center, your one-stop destination for all your fitness needs. We offer a wide range of high-quality fitness equipment and accessories to help you achieve your health and wellness goals.</p>
+            <p>Our mission is to provide our customers with the best products and services, ensuring a seamless and enjoyable fitness journey. Whether you're a beginner or a seasoned athlete, we have something for everyone.</p>
+            <p>Explore our products, find your perfect fit, and start your path to a healthier lifestyle today!</p>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">&copy; 2025 Fitness Center</div>
+            <div class="footer-column"><a href="#feedback">Feedback</a></div>
+            <div class="footer-column"><a href="#social">Social Media Links</a></div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector(".menu-toggle").addEventListener("click", function () {
+            document.querySelector("nav ul").classList.toggle("show");
+        });
+    </script>
+</body>
+</html>

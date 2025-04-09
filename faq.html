@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Fitness Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            align-items: center;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #nav-menu {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        #nav-menu li {
+            margin: 0 15px;
+        }
+        #nav-menu a {
+            color: white;
+            text-decoration: none;
+        }
+        .nav-right button {
+            background: #ff6600;
+            border: none;
+            padding: 8px 12px;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .faq-main {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .faq-container h1 {
+            text-align: center;
+        }
+        .faq section {
+            margin-bottom: 20px;
+        }
+        .faq h2 {
+            font-size: 18px;
+            color: #333;
+        }
+        .faq p {
+            font-size: 16px;
+            color: #666;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .footer-container a {
+            color: white;
+            text-decoration: none;
+        }
+        @media (max-width: 600px) {
+            .menu-toggle {
+                display: block;
+            }
+            #nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background: #333;
+                width: 100%;
+                top: 50px;
+                left: 0;
+                padding: 10px;
+            }
+            #nav-menu li {
+                margin-bottom: 10px;
+            }
+        }
+    </style><script>
+        function toggleMenu() {
+            var menu = document.getElementById('nav-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+    </script></head>
+<body>
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul id="nav-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button onclick="location.href='login.html';">Login</button>
+            <button onclick="location.href='signup.html';">Signup</button>
+        </div>
+    </nav>
+
+    <main class="faq-main">
+        <div class="faq-container">
+            <h1>Frequently Asked Questions</h1>
+            <div class="faq">
+                <section>
+                    <h2>1. What is your return policy?</h2>
+                    <p>We offer a 30-day return policy on most items, with the exception of clearance products and certain accessories.</p>
+                </section>
+                <section>
+                    <h2>2. Do you offer free shipping?</h2>
+                    <p>Yes, we offer free shipping on all orders over $100 within the U.S. International shipping rates may vary.</p>
+                </section>
+                <section>
+                    <h2>3. How long does shipping take?</h2>
+                    <p>Standard shipping usually takes 3-5 business days. Expedited shipping options are available during checkout.</p>
+                </section>
+                <section>
+                    <h2>4. Do you offer fitness coaching services?</h2>
+                    <p>Yes, we offer personalized coaching services, including virtual sessions. For more information, visit our "Coaching" page.</p>
+                </section>
+                <section>
+                    <h2>5. Can I cancel my order after placing it?</h2>
+                    <p>Orders can be canceled within 24 hours of placing them. After that, the order is processed for shipment and cannot be canceled.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">&copy; 2025 Fitness Center</div>
+            <div class="footer-column"><a href="#feedback">Feedback</a></div>
+            <div class="footer-column"><a href="#social">Social Media Links</a></div>
+        </div>
+    </footer>
+</body>
+</html>

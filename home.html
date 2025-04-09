@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Center</title>
+    
+    <script>
+        function addToCart(productName, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            window.location.href = 'cart.html';
+        }
+
+        function toggleMenu() {
+            document.getElementById("nav-menu").classList.toggle("active");
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: grey;
+            color: #333;
+                        
+        }
+
+
+        nav {
+            background: rgb(44, 43, 43);
+            border-bottom: 2px solid rgb(255, 145, 0);
+            padding: 1em 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            font-weight: bolder;
+            font-size: 20px;
+
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .nav-right button {
+            background-color: #007bff;
+            font-size: 15px;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            background-color: #f0f0f0;
+        }
+
+        .product-page {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            content-visibility: auto;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            min-height: 100px;
+        }
+
+        .product button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background: rgb(44, 43, 43);
+            color: white;
+            text-align: center;
+            padding: 2em 0;
+            margin-top: auto;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1 1 30%;
+        }
+
+        .footer-column a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+       
+    .hero {
+background-image: url('images/IMG1.png'); /* Ensure the path is correct */
+background-position: center;
+background-repeat: no-repeat;
+/* This makes the background stay fixed */
+height: 100vh; /* Full viewport height */background-size: cover;
+width: 100%; /* Ensure it covers the full width */
+
+
+}
+
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: white;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+                padding: 10px 0;
+            }
+        }
+        .edit{
+            color: azure;
+            margin-left: 30px;
+            font-size: larger;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul id="nav-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="item.html">Items</a></li>
+            <li><a href="diet.html">Diet</a></li>
+            <li><a href="chat.html">Chat Me</a></li>
+            <li><a href="BMI.html">BMI</a></li>
+        </ul>
+        <div class="nav-right">
+            <button onclick="location.href='login.html';">Login</button>
+            <button onclick="location.href='signup.html';">Signup</button>
+        </div>
+    </nav>
+
+       <section class="hero">
+<div class="edit">
+    <h1>REFRESH YOUR</h1>
+    <h1>ROUTINE SHAPE</h1>
+    <h1>
+        YOUR <span style="color: rgb(108, 237, 108);">FITNESS</span>
+    </h1>
+</div>
+       </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column"><a href="Fitness center.html">&copy; 2025 Fitness Center </a></div>
+            <div class="footer-column"><a href="feedback.html">Feedback</a></div>
+            <div class="footer-column"><a href="social.html">Social Media Links</a></div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .product-page {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product h2 {
+            font-size: 20px;
+        }
+        .product p {
+            font-size: 16px;
+            color: #555;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <section id="products" class="product-page">
+        <div class="product">
+            <picture>
+                <source src="images/image1.webp" type="webp">
+                <img src="images/fit1.jpg" alt="Exercise Set" loading="lazy" width="300" height="200">
+            </picture>
+            <h2>Exercise Set</h2>
+            <p>Complete gym setup with multiple machines.</p>
+            <p>Price: $1500</p>
+            <button onclick="addToCart('Exercise Set', 1500)">Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <picture>
+                <source src="images/image2.webp" type="webp">
+                <img src="images/fit2.jpg" alt="Dumbbell" loading="lazy" width="300" height="200">
+            </picture>
+            <h2>Dumbbell</h2>
+            <p>Max Fitness 15KG Dumbbell</p>
+            <p>Price: $150</p>
+            <button onclick="addToCart('Dumbbell', 150)">Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <img src="images/FIT3.jpg" alt="Bench Press Machine" loading="lazy" width="300" height="200">
+            <h2>Bench Press Machine</h2>
+            <p>Max Fitness Bench Press Machine</p>
+            <p>Price: $500</p>
+            <button onclick="addToCart('Bench Press Machine', 500)">Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <img src="images/fit4.jpg" alt="Treadmill" loading="lazy" width="300" height="200">
+            <h2>Treadmill</h2>
+            <p>High-quality treadmill for home use.</p>
+            <p>Price: $1000</p>
+            <button onclick="addToCart('Treadmill', 1000)">Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <img src="images/fit5.jpg" alt="Yoga Mat" loading="lazy" width="300" height="200">
+            <h2>Yoga Mat</h2>
+            <p>Non-slip yoga mat for all types of workouts.</p>
+            <p>Price: $30</p>
+            <button onclick="addToCart('Yoga Mat', 30)">Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <img src="images/fit6.jpg" alt="Protein Powder" loading="lazy" width="300" height="200">
+            <h2>Protein Powder</h2>
+            <p>Whey protein powder for muscle recovery.</p>
+            <p>Price: $60</p>
+            <button onclick="addToCart('Protein Powder', 60)">Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+    </section>
+
+    <div class="cart">
+        <h3>Shopping Cart</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartList = document.getElementById('cart-items');
+            cartList.innerHTML = '';
+            cart.forEach((product, index) => {
+                let li = document.createElement('li');
+                li.textContent = `${product.item} - $${product.price}`;
+
+                cartList.appendChild(li);
+            });
+            document.getElementById('cart-total').textContent = total;
+        }
+    </script>
+</body>
+</html>
