@@ -2,23 +2,6 @@ const CACHE_NAME = "fitness-cache-v1";
 const urlsToCache = [
   "/",
   "/home.html",
-  "/style.css",
-  "/images/fit1.jpg",
-  "/images/fit2.jpg",
-  "/images/FIT3.jpg",
-  "/images/fit4.jpg",
-  "/images/fit5.jpg",
-  "/images/fit6.jpg",
-
-  "/images/fit7.jpg",
-  "/images/fit8.jpg",
-  "/images/fit9.jpg",
-  "/images/fit11.jpg",
-  "/images/image1.webp",
-  "/images/image2.webp",
-  "/images/IMG1.png",
-  "/images/img2.jpg",
-  "/images/img3.jpg",
   "/about.html",
   "/BMI.html",
   "/buynow.html",
@@ -34,55 +17,41 @@ const urlsToCache = [
   "/service.html",
   "/signup.html",
   "/social.html",
-  "/script.js",
+  "/faq.html",
   "/offline.html",
-  "/faq.html"
-  
+  "/style.css",
+  "/script.js",
+  "/images/fit1.jpg",
+  "/images/fit2.jpg",
+  "/images/FIT3.jpg",
+  "/images/fit4.jpg",
+  "/images/fit5.jpg",
+  "/images/fit6.jpg",
+  "/images/fit7.jpg",
+  "/images/fit8.jpg",
+  "/images/fit9.jpg",
+  "/images/fit11.jpg",
+  "/images/image1.webp",
+  "/images/image2.webp",
+  "/images/IMG1.png",
+  "/images/img2.jpg",
+  "/images/img3.jpg"
 ];
 
+// Install event
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(urlsToCache);
     })
   );
+  self.skipWaiting(); // Activate immediately after install
 });
 
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
-});
-
-
-
-
-
-// Install: Cache files
-self.addEventListener('install', event => {
+// Activate event: cleanup old caches
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
-});
-
-// Fetch: Serve from cache, fallback to offline page if not connected
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      return caches.match(event.request).then(response => {
-        return response || caches.match(OFFLINE_URL);
-      });
-    })
-  );
-});
-
-// Activate: Clean old caches if any
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys => 
+    caches.keys().then(keys =>
       Promise.all(
         keys.map(key => {
           if (key !== CACHE_NAME) {
@@ -91,5 +60,24 @@ self.addEventListener('activate', event => {
         })
       )
     )
+  );
+  self.clients.claim();
+});
+
+// Fetch event
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(event.request).catch(() => {
+        // Fallback to offline.html for navigation requests
+        if (event.request.mode === "navigate") {
+          return caches.match("/offline.html");
+        }
+      });
+    })
   );
 });
