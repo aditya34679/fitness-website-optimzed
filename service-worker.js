@@ -10,7 +10,7 @@ const urlsToCache = [
   "/chat.html",
   "/diet.html",
   "/feedback.html",
-  "/fitness-center.html", // renamed
+  "/fitness-center.html", // no spaces!
   "/item.html",
   "/login.html",
   "/product.html",
@@ -49,15 +49,13 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
+    caches.keys().then(keys => {
+      return Promise.all(
         keys.map(key => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
+          if (key !== CACHE_NAME) return caches.delete(key);
         })
-      )
-    )
+      );
+    })
   );
   self.clients.claim();
 });
@@ -65,6 +63,7 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
+      // Serve cached version OR try network OR show offline page if it's a navigation request
       return (
         response ||
         fetch(event.request).catch(() => {
