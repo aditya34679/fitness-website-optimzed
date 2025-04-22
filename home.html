@@ -19,6 +19,20 @@
         function toggleMenu() {
             document.getElementById("nav-menu").classList.toggle("active");
         }
+
+        
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/service-worker.js') // adjust path if needed
+        .then(function (registration) {
+          console.log('ServiceWorker registered: ', registration);
+        })
+        .catch(function (error) {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+  }
+
     </script>
     <style>
         body {
