@@ -1,6 +1,4 @@
 const CACHE_NAME = "fitness-cache-v1";
-const OFFLINE_URL = "/offline.html";
-
 const urlsToCache = [
   "/",
   "/home.html",
@@ -11,6 +9,7 @@ const urlsToCache = [
   "/images/fit4.jpg",
   "/images/fit5.jpg",
   "/images/fit6.jpg",
+
   "/images/fit7.jpg",
   "/images/fit8.jpg",
   "/images/fit9.jpg",
@@ -38,9 +37,9 @@ const urlsToCache = [
   "/script.js",
   "/offline.html",
   "/faq.html"
+  
 ];
 
-// Install: Cache files
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -49,8 +48,39 @@ self.addEventListener("install", event => {
   );
 });
 
-// Activate: Delete old caches
-self.addEventListener("activate", event => {
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
+
+
+
+
+
+// Install: Cache files
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+  );
+});
+
+// Fetch: Serve from cache, fallback to offline page if not connected
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    fetch(event.request).catch(() => {
+      return caches.match(event.request).then(response => {
+        return response || caches.match(OFFLINE_URL);
+      });
+    })
+  );
+});
+
+// Activate: Clean old caches if any
+self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => 
       Promise.all(
@@ -61,16 +91,5 @@ self.addEventListener("activate", event => {
         })
       )
     )
-  );
-});
-
-// Fetch: Respond with cache or fallback to offline
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      return caches.match(event.request).then(response => {
-        return response || caches.match(OFFLINE_URL);
-      });
-    })
   );
 });
