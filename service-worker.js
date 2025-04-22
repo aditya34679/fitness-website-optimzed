@@ -60,24 +60,7 @@ self.addEventListener("fetch", event => {
 
 
 
-// Install: Cache files
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
-});
 
-// Fetch: Serve from cache, fallback to offline page if not connected
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      return caches.match(event.request).then(response => {
-        return response || caches.match(OFFLINE_URL);
-      });
-    })
-  );
-});
 
 // Activate: Clean old caches if any
 self.addEventListener('activate', event => {
