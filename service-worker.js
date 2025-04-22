@@ -1,5 +1,5 @@
 const CACHE_NAME = "fitness-cache-v1";
-
+const OFFLINE_URL = "/offline.html";
 
 const urlsToCache = [
   "/",
