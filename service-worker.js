@@ -5,7 +5,7 @@ const urlsToCache = [
   "/style.css",
   "/images/fit1.jpg",
   "/images/fit2.jpg",
-  "/images/FIT3.jpg",
+  "/images/fit3.jpg",  // Make sure this matches the actual file name
   "/images/fit4.jpg",
   "/images/fit5.jpg",
   "/images/fit6.jpg",
@@ -38,37 +38,42 @@ const urlsToCache = [
   "/offline.html"
 ];
 
-// Install event: caching all specified assets
+// Install event
 self.addEventListener("install", event => {
+  console.log("[ServiceWorker] Install");
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+      .then(cache => {
+        console.log("[ServiceWorker] Caching app shell");
+        return cache.addAll(urlsToCache);
+      })
   );
-  self.skipWaiting(); // Activate immediately after install
+  self.skipWaiting();
 });
 
-// Activate event: clean up old caches
+// Activate event
 self.addEventListener("activate", event => {
+  console.log("[ServiceWorker] Activate");
   event.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(
+    caches.keys().then(keys =>
+      Promise.all(
         keys.map(key => {
           if (key !== CACHE_NAME) {
+            console.log("[ServiceWorker] Removing old cache", key);
             return caches.delete(key);
           }
         })
-      );
-    })
+      )
+    )
   );
-  self.clients.claim(); // Control all pages immediately
+  self.clients.claim();
 });
 
-// Fetch event: respond with cached resource or fallback
+// Fetch event
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      return cachedResponse || fetch(event.request).catch(() => {
-        // Return offline.html only for navigation requests (like page loads)
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request).catch(() => {
         if (event.request.mode === "navigate") {
           return caches.match("/offline.html");
         }
